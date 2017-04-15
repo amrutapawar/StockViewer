@@ -5,24 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockViewer_UI"
         mc:Ignorable="d"
-        Title="Stock Viewer" Height="350" Width="525" WindowStartupLocation="CenterScreen" WindowState="Minimized" Background="Beige">
-    <Grid Margin="0,0,-82,-69">
-        <TextBox x:Name="comp_name" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" Margin="241,53,0,0"/>
-        <Label x:Name="label" Content="Company Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,53,0,0" Width="158" FontWeight="Medium" FontSize="14"/>
-        <Button x:Name="button" Content="Enter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="452,57,0,0" Click="button_Click" Height="25"/>
-        <Label x:Name="not_found" Content="Company not found." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="205,96,0,0" FontSize="14" Foreground="Red"/>
+        Title="Stock Viewer" Height="350" Width="525" WindowStartupLocation="CenterScreen" WindowState="Maximized"  >
+    <Window.Background>
+        <ImageBrush ImageSource="/images/background.jpg" Opacity="0.25"  />
+    </Window.Background>
+    <Grid Margin="0,10,-8,-20">
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="540*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,-9,0,105" Grid.ColumnSpan="2" >
+            <StackPanel.Background>
+               <ImageBrush ImageSource="/images/companies.jpg" Opacity="0.7"></ImageBrush>
+        </StackPanel.Background>
+            <Label x:Name="label1" Content="STOCK VIEWER" FontSize="42" FontWeight="ExtraBold"  Foreground="Yellow"  Opacity="0.9" HorizontalAlignment="Center"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,38,0,0">
+           
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30,80,0,20">
+                <Label x:Name="label" Content="Company Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" FontWeight="ExtraBold"  Foreground="White"  FontSize="17"/>
+                <TextBox x:Name="comp_name" Text="{Binding Compname}"  HorizontalAlignment="Left" Height="29" TextWrapping="Wrap"  VerticalAlignment="Top" Width="174" />
+                <Button x:Name="button" Content="Enter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="15,0,0,0" Click="button_Click" Height="26"/>
+            </StackPanel>
+            <Label x:Name="not_found" Content="Company not found." VerticalAlignment="Top" FontSize="15" Foreground="Red" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <ScrollViewer Name="scroller" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="0,0,10,0">
+            
+            <ItemsControl Name="items" ItemsSource="{Binding StockModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:StockViewByCompany/>
+
+                    </DataTemplate>
+                    
+                </ItemsControl.ItemTemplate>
+                
+                
+            </ItemsControl>
+         
+        </ScrollViewer>
         
-        <Grid Name="grid">
-       
-  <!--      <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,229,0,0" Width="162" SelectedDateChanged="GetStockByDate"/>
+    </Grid>
+</Window>
+
+
+
+<!--     <StackPanel Name="UI_SP" Margin="5" Background="#FFE8EEDE">
+                <DataGrid x:Name="datag" HorizontalAlignment="Center"   Visibility="Visible" ItemsSource="{Binding}" AutoGenerateColumns="True"  Margin="76,269,0,0" VerticalScrollBarVisibility="Hidden" Width="Auto" Height="Auto" EnableRowVirtualization="False" IsReadOnly="True">
+                   <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,229,0,0" Width="162" SelectedDateChanged="GetStockByDate"/>
         <Label x:Name="date_not_found" Content="Please select a Date." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="238,224,0,0" FontSize="14" Foreground="Red" Visibility="Hidden"/>
 
         <Label x:Name="price_label" Content="Current Stock price : " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,151,0,0" Width="130"/>
         <Label x:Name="sym" Content=" " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,117,0,0" RenderTransformOrigin="-9.231,-0.462" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="price" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,151,0,0"/>
         <DataGrid x:Name="dg" ItemsSource="{Binding}" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,269,0,0" VerticalScrollBarVisibility="Hidden" Width="Auto" Height="Auto" EnableRowVirtualization="False" IsReadOnly="True"/> -->
-        
-        </Grid>
+            
+   
 
-    </Grid>
-</Window>
+    
