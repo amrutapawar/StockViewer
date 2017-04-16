@@ -38,7 +38,7 @@ namespace StockViewer_UI
         public async void Get_Json(string company_name)
         {
             string base_url = "http://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=";
-            string Json_Url = String.Concat(base_url + company_name +"&apikey=9360");
+            string Json_Url = String.Concat(base_url + company_name +"&apikey=");
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(Json_Url);
             data = await response.Content.ReadAsStringAsync();
@@ -73,7 +73,7 @@ namespace StockViewer_UI
             foreach (KeyValuePair<string, string> pair in company)
             {
               
-             //   if (companyname == mc.Value)
+            
                 if((pair.Value).Contains(companyname))
                 {
                     string val = pair.Value;
